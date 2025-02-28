@@ -1,0 +1,98 @@
+<html>
+<head>
+  <title>Artify: Sign In Page</title>
+  <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+  <video autoplay muted loop id="myVideo">
+    <source src="https://videos.pexels.com/video-files/1943484/1943484-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="container">
+    <div id="signin-page" class="form-container active">
+      <h2>Log In</h2>
+      <form id="signin-form">
+        <div class="input-group">
+          <label for="email-signin">Email</label>
+          <input type="email" id="email-signin" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+          <label for="password-signin">Password</label>
+          <input type="password" id="password-signin" placeholder="Enter your password" required>
+        </div>
+        <button type="button" id="signin-button">Sign In</button>
+        <p class="toggle-link">Don't have an account? <a href="#" id="go-to-signup">Sign Up</a></p>
+      </form>
+    </div>
+    <div id="signup-page" class="form-container">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <div class="input-group">
+          <label for="initials">Initials</label>
+          <input type="text" id="initials" placeholder="Enter your initials" required>
+        </div>
+        <div class="input-group">
+          <label for="email-signup">Email</label>
+          <input type="email" id="email-signup" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+          <label for="password-signup">Password</label>
+          <input type="password" id="password-signup" placeholder="Enter your password" required>
+        </div>
+        <button type="button" id="signup-button">Sign Up</button>
+        <p class="toggle-link">Already have an account? <a href="#" id="go-to-signin">Log In</a></p>
+      </form>
+    </div>
+  </div>
+  <script>
+const signinPage = document.getElementById("signin-page");
+const signupPage = document.getElementById("signup-page");
+const goToSignup = document.getElementById("go-to-signup");
+const goToSignin = document.getElementById("go-to-signin");
+const signupButton = document.getElementById("signup-button");
+const signinButton = document.getElementById("signin-button");
+
+goToSignup.addEventListener("click", (e) => {
+  e.preventDefault();
+  signinPage.classList.remove("active");
+  signupPage.classList.add("active");
+});
+
+goToSignin.addEventListener("click", (e) => {
+  e.preventDefault();
+  signupPage.classList.remove("active");
+  signinPage.classList.add("active");
+});
+
+signupButton.addEventListener("click", () => {
+  const initials = document.getElementById("initials").value.trim();
+  const email = document.getElementById("email-signup").value.trim();
+  const password = document.getElementById("password-signup").value.trim();
+
+  if (!initials) {
+    alert("Please enter your initials before signing up!");
+    return;
+  }
+
+  if (email && password) {
+    alert("Sign-up successful! Redirecting to Sign In...");
+    signupPage.classList.remove("active");
+    signinPage.classList.add("active");
+  } else {
+    alert("Please fill out all fields.");
+  }
+});
+
+signinButton.addEventListener("click", () => {
+  const email = document.getElementById("email-signin").value.trim();
+  const password = document.getElementById("password-signin").value.trim();
+
+  if (email && password) {
+    alert("Sign-in successful! Redirecting to Artify...");
+    window.location.href = "Artify.html";
+  } else {
+    alert("Please fill out all fields.");
+  }
+});
+  </script>
+</body>
+</html>
